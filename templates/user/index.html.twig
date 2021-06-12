@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container" style="margin-bottom: 400px;">
+		<h1 style="margin:50px;">Mon Profil</h1>
+
+		<div class="row">
+			<div class="col md-6">
+				<div>
+					<img class="rounded-circle" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" data-holder-rendered="true">
+				</div>
+			</div>
+			<div class="col md-6">
+				<div>
+					<p>Prénom:
+						{{ app.user.firstname }}
+					</p>
+
+					<p>Mail:
+						{{ app.user.email }}
+					</p>
+
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

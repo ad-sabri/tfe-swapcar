@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter !
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5">
+		<div class="row" style="display: flex; align-items: center; justify-content: center;">
+			<div class="col-md-4">
+				<h1>Connexion</h1>
+				{% if error %}
+					<p>{{error.message}}</p>
+				{% endif %}
+
+				{{ form_start(formView) }}
+				{{ form_widget(formView) }}
+
+				<a href="{{ path('security_register') }}">Pas encore de compte ? Inscrivez-vous !</a>
+
+				<button type="submit" class="btn btn-success" style="display: flex; width:100%; align-items: center; justify-content: center;">Connexion</button>
+
+				{{ form_end(formView) }}
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
