@@ -16,6 +16,6 @@ if (!\class_exists(App_KernelProdContainer::class, false)) {
 
 return new \ContainerDEKVIrA\App_KernelProdContainer([
     'container.build_hash' => 'DEKVIrA',
-    'container.build_id' => '1c9c2559',
-    'container.build_time' => 1623501390,
+    'container.build_id' => '38dd3b02',
+    'container.build_time' => 1623505532,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerDEKVIrA');
