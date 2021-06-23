@@ -36,13 +36,18 @@ class AdController extends AbstractController
     /**
      * @Route("/ad", name="ad")
      */
-    public function index(AdRepository $repo, Request $request): Response
+    public function index(AdRepository $repo, Request $request, PaginatorInterface $paginator): Response
     {
         $ads = $repo->findAll();
         //dd($ads);
 
-        return $this->render('ad/index.html.twig', [
-            'controller_name' => 'AdController',
+        $ads = $paginator->paginate(
+            $ads, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            6/*limit per page*/
+        );
+
+        return $this->render('ad/annonces.html.twig', [
             'ads' => $ads
         ]);
     }
@@ -57,7 +62,9 @@ class AdController extends AbstractController
             ->setMethod('GET')
             ->add('startDate', DateType::class, ['label' => 'Date de début', 'widget' => "single_text"])
             ->add('endDate', DateType::class, ['label' => 'Date de fin', 'widget' => "single_text"])
-            ->add('save', SubmitType::class, ['label' => 'Rechercher une annonce'])
+            ->add('save', SubmitType::class, [
+                'label' => 'Rechercher'
+            ])
             ->getForm();
 
         $form->handleRequest($request);
@@ -65,6 +72,7 @@ class AdController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $dates = $form->getData();
+            dd($dates);
 
             return $this->redirectToRoute("ad_results", $request->query->all());
         }
